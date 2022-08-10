@@ -11,6 +11,105 @@
          </div>
          <div class="card col-md-8">
              <h3 class="text-primary">Click On Add, To Add Form Then Fill In Your Details And Submit</h3>
+             <br/>
+
+             <h1>Provide Basic Provide Information</h1>
+             <form class="uform" method="POST" enctype="multipart/form-data">
+
+
+                <div  class="form-group">
+                    <div class="row"  >
+                    <div class="col" >
+                        <label>First Name</label>
+                        <input type="text" placeholder="Enter First Name" id="fname" class="form-control" />
+                    </div>
+                    <div class="col" >
+                        <label>Middle Name</label>
+                        <input type="text"  placeholder="Enter Middle Name" id="mname" class="form-control" />
+                    </div>
+                    <div class="col" >
+                        <label>Last name</label>
+                        <input type="text"  placeholder="Enter Last Name" id="lname" class="form-control" />
+                    </div>
+                    
+                    </div>
+                    </div>
+
+
+                    <div  class="form-group">
+                        <div class="row"  >
+                        <div class="col" >
+                            <label>Gender</label>
+                            <select   id="gender" class="form-control">
+                                <option value="">Choose Your Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="col" >
+                            <label>Date of Birth</label>
+                            <input type="date"  placeholder="Enter Date of Birth" id="dob" class="form-control" />
+                        </div>
+                        <div class="col" >
+                            <label>Occupation</label>
+                            <input type="text"  placeholder="Enter Your Occupation" id="occupation" class="form-control" />
+                        </div>
+                        </div>
+                        </div>
+
+
+
+                        <div  class="form-group">
+                            <div class="row"  >
+                            <div class="col" >
+                                <label>Email</label>
+                                <input type="email"  placeholder="Enter Your Email" id="email" class="form-control" />
+                            </div>
+                            <div class="col" >
+                                <label>Phone</label>
+                                <input type="text"  placeholder="Enter Phone Number" id="phone" class="form-control" />
+                            </div>
+                            </div>
+                            </div>
+
+
+
+                            <div  class="form-group">
+                                <div class="row"  >
+                                <div class="col" >
+                                    <label>Country</label>
+                                    <input type="text"  placeholder="Enter Your Country" id="country" class="form-control" />
+                                </div>
+                                <div class="col" >
+                                    <label>Region</label>
+                                    <input type="text"  placeholder="Enter Your Region" id="region" class="form-control" />
+                                </div>
+                                </div>
+                                </div>
+
+                                <div  class="form-group">
+                                    <div class="row"  >
+                                    <div class="col" >
+                                        <label>Biography</label>
+                                        <textarea id="bio" placeholder="Compose Your Biography" cols="4" rows="5" class="form-control"></textarea>
+                                        
+                                    </div>
+                                    <div class="col" >
+                                        <label>Profile</label>
+                                        <input type="file" id="file"  name="file" class="form-control" />
+                                    </div>
+                                    </div>
+                                    </div>
+            <img src="{% static 'img/spinner.gif' %}" style="width: 50%; padding-top: 0%; display: none;" id="loading_spinner"> 
+            <div id="result"></div>
+            <br/>
+
+            <button id="profile_save" class="btn btn-primary">Save</button>
+
+
+             </form>
+
+             <br/>
              <h1>Add Professional Skills Form</h1>
 
              <form class="form_skill" method="POST">
@@ -99,469 +198,9 @@
      </div>
 </div>
 
+{% include 'core/create_cv_script.html' %}
 
-<script>
-    $(document).ready(function(){
 
-
-    $('#skill_save').hide();
-    $('#edu_save').hide();
-    $('#ref_save').hide();
-
-
-
-    
-     
-    // Value for skill form
-    var a = 0
-
-    // Value for Education form
-    var b = 0
-
-
-    // Value for referee form
-    var c = 0
-
-
-
-
-    // Incriment skill form
-    $('#skill_add').click(function(e){
-     e.preventDefault();
-     appendSkillRow();
-     a++;
-    $('#skill_save').show();
-    });
-
-
-    // Incriment education form
-    $('#edu_add').click(function(e){
-     e.preventDefault();
-     appendEduRow();
-     b++;
-    $('#edu_save').show();
-    });
-
-
-
-    // Incriment Referee form
-    $('#ref_add').click(function(e){
-     e.preventDefault();
-     appendRefRow();
-     c++;
-    $('#ref_save').show();
-    });
-
-
-
-     // Append skill form
-     function appendRefRow(){
-        $('#wrapper_ref').append(
-            '<div id="'+c+'" class="form-group">' +
-                '<div class="row" id="'+c+'" >' +
-                '<div class="col" id="'+c+'">' +
-                    '<label>Name</label>' +
-                    '<input type="Enter Referee Name" name="name" class="form-control" />' +
-                '</div>' +
-                '<div class="col" id="'+c+'">' +
-                    '<label>Phone Number</label>' +
-                    '<input type="Enter Referee Phone Number" name="phone" class="form-control" />' +
-                '</div>' +
-                '<div class="col" id="'+c+'">' +
-                    '<label>Email</label>' +
-                    '<input type="Enter Referee Email" name="email" class="form-control" />' +
-                '</div>' +
-                '<div id="'+c+'" class="ref_del_btn col">' +
-                    '<button class=" btn btn-danger">Delete</button>' +
-                    '</div>' +
-                '</div>' +
-                '</div>'
-
-        );
-    }
-
-
-
-    // Append skill form
-    function appendSkillRow(){
-        $('#wrapper_skill').append(
-          
-            
-                 '<div class="form-group" id="'+a+'">' +
-                     '<div class="row" id="'+a+'">' +
-                     '<div class="col" id="'+a+'">' +
-                         '<label>Name of your skill</label>' +
-                         '<input id="'+a+'" type="Enter Your Skill" name="s_name" class="form-control" />' +
-                     '</div>' +
-                     '<div class="col" id="'+a+'">' +
-                    '<label>Level of your skill</label>' +
-                    '<select  id="'+a+'" name="s_level" class="form-control">' +
-                        '<option value="">Choose Your Level</option>' +
-                        '<option value="Beginner">Beginner</option>' +
-                        '<option value="Intermediate">Intermediate</option>' +
-                        '<option value="Advanced">Advanced</option>' +
-                    '</select>' +
-                    '</div>' +
-
-                    '<div class="skill_del_btn col" id="'+a+'">' +
-                    '<button class=" btn btn-danger">Delete</button>' +
-                    '</div>' +
-                     '</div>' +
-                 '</div>'
-
-        );
-    }
-
-
-
-
-    // Append education form
-    function appendEduRow(){
-        $('#wrapper_edu').append(
-            '<div id="'+b+'" class="form-group">' +
-                '<div class="row" id="'+b+'" >' +
-                '<div class="col" id="'+b+'">' +
-                    '<label>Institution Name</label>' +
-                    '<input type="Enter Institution Name" name="name" class="form-control" />' +
-                '</div>' +
-                '<div class="col" id="'+b+'">' +
-                    '<label>Year</label>' +
-                    '<input type="Enter Year" name="year" class="form-control" />' +
-                '</div>' +
-                '<div class="col" id="'+b+'">' +
-                    '<label>Award</label>' +
-                    '<input type="Enter Award" name="award" class="form-control" />' +
-                '</div>' +
-                '<div id="'+b+'" class="edu_del_btn col">' +
-                    '<button class=" btn btn-danger">Delete</button>' +
-                    '</div>' +
-                '</div>' +
-                '</div>'
-
-        );
-    }
-
-
-
-        // Referee delete form 
-        $('#wrapper_ref').on('click', '.ref_del_btn', function(e){
-        e.preventDefault();
-        var r_id = e.currentTarget.id;
-        $('div[id='+r_id+']').remove()
-        c--;
-
-        if( c=== 0){
-           $('#ref_save').hide();
-        }
-
-    });
-
-
-
-    // Skill delete form 
-    $('#wrapper_skill').on('click', '.skill_del_btn', function(e){
-        e.preventDefault();
-        var s_id = e.currentTarget.id;
-        $('div[id='+s_id+']').remove()
-        a--;
-
-        if( a=== 0){
-           $('#skill_save').hide();
-        }
-
-    });
-
-
-
-
-       // Education delete form 
-       $('#wrapper_edu').on('click', '.edu_del_btn', function(e){
-        e.preventDefault();
-        var e_id = e.currentTarget.id;
-        $('div[id='+e_id+']').remove()
-        b--;
-
-        if( a=== 0){
-           $('#edu_save').hide();
-        }
-
-    });
-
-
-
-    $.fn.serializeObject = function(asString){
-        var o = {}
-        var a = this.serializeArray();
-        $.each(a, function(){
-            if($('#' + this.name).hasClass('date')){
-                this.value = new Date(this.value).setHours(12)
-            }
-
-                if(o[this.name] !== undefined){
-                    if(!o[this.name].push){
-                        o[this.name] = [o[this.name]]
-                    }
-                    o[this.name].push(this.value || '')
-                }else{
-                    o[this.name] = this.value || '';
-                }
-
-        });
-        if(asString){
-            return JSON.stringify(o)
-        }
-        return o;
-    }
-
-
-    // Save skills
-    $('#skill_save').click(function(e){
-       e.preventDefault();
-       var formData = $('.form_skill').serializeObject()
-
-       var obj;
-
-       var nameArray = []
-       var levelArray = []
-
-       if(Array.isArray(formData.s_name)){
-           for(var i=0; i <formData.s_name.length; i++){
-             obj = {}
-             obj.s_name = formData.s_name[i]
-             obj.s_level = formData.s_level[i]
-
-             nameArray.push(formData.s_name[i])
-             levelArray.push(formData.s_level[i])
-             
-
-           }
-           
-
-           $.ajax({
-               type:'POST',
-               url:'{% url "skill-save" %}',
-               headers: {'X-CSRFToken': '{{csrf_token}}'},
-               data:{'s_name':nameArray, 's_level':levelArray},
-
-               success: function(data){
-                   x = data.status
-                   if(x == 1){
-                   alert('Multiple Skill Data Saved')
-                   }else{
-                   alert('Multiple Skill Data Not Saved')
-                   }
-               }
-
-           })
-
-
-       }else{
-            obj = {}
-             obj.s_name = formData.s_name
-             obj.s_level = formData.s_level
-
-             nameArray.push(formData.s_name)
-             levelArray.push(formData.s_level)
-             
-             $.ajax({
-               type:'POST',
-               url:'{% url "skill-save" %}',
-               headers: {'X-CSRFToken': '{{csrf_token}}'},
-               data:{'s_name':nameArray, 's_level':levelArray},
-
-               success: function(data){
-                   x = data.status
-                   if(x == 1){
-                   alert('Single Skill Data Saved')
-                   }else{
-                   alert('Single Skill Data Not Saved')
-                   }
-               }
-
-           })
-
-       }
-       
-
-    });
-
-
-
-
-
-
-    // Save referee
-    $('#ref_save').click(function(e){
-       e.preventDefault();
-       var formData = $('.form_ref').serializeObject()
-
-       var obj;
-
-       var nameArray = []
-       var phoneArray = []
-       var emailArray = []
-
-
-       if(Array.isArray(formData.name)){
-           for(var i=0; i <formData.name.length; i++){
-             obj = {}
-             obj.name = formData.name[i]
-             obj.phone = formData.phone[i]
-             obj.email = formData.email[i]
-
-
-             nameArray.push(formData.name[i])
-             phoneArray.push(formData.phone[i])
-             emailArray.push(formData.email[i])
-            
-             console.log('Name',nameArray)
-             console.log('Phone',phoneArray)
-             console.log('Email',emailArray)
-
-
-             
-
-           }
-           
-
-           $.ajax({
-               type:'POST',
-               url:'{% url "ref-save" %}',
-               headers: {'X-CSRFToken': '{{csrf_token}}'},
-               data:{'name':nameArray, 'phone':phoneArray, 'email':emailArray},
-
-               success: function(data){
-                   x = data.status
-                   if(x == 1){
-                   alert('Multiple Referee Data Saved')
-                   }else{
-                   alert('Multiple Referee Data Not Saved')
-                   }
-               }
-
-           })
-
-
-       }else{
-            obj = {}
-            obj.name = formData.name
-             obj.phone = formData.phone
-             obj.email = formData.email
-
-
-             nameArray.push(formData.name)
-             phoneArray.push(formData.phone)
-             emailArray.push(formData.email)
-             
-             $.ajax({
-               type:'POST',
-               url:'{% url "ref-save" %}',
-               headers: {'X-CSRFToken': '{{csrf_token}}'},
-               data:{'name':nameArray, 'phone':phoneArray, 'email':emailArray},
-
-               success: function(data){
-                   x = data.status
-                   if(x == 1){
-                   alert('Single Referee Data Saved')
-                   }else{
-                   alert('Single Referee Data Not Saved')
-                   }
-               }
-
-           })
-
-       }
-       
-
-    });
-
-
-
-        // Save education
-        $('#edu_save').click(function(e){
-       e.preventDefault();
-       var formData = $('.form_edu').serializeObject()
-
-       var obj;
-
-       var nameArray = []
-       var yearArray = []
-       var awardArray = []
-
-
-       if(Array.isArray(formData.name)){
-           for(var i=0; i <formData.name.length; i++){
-             obj = {}
-             obj.name = formData.name[i]
-             obj.year = formData.year[i]
-             obj.award = formData.award[i]
-
-
-             nameArray.push(formData.name[i])
-             yearArray.push(formData.year[i])
-             awardArray.push(formData.year[i])
-
-           console.log('Institution name',nameArray)
-             
-           }
-
-           
-
-           $.ajax({
-               type:'POST',
-               url:'{% url "edu-save" %}',
-               headers: {'X-CSRFToken': '{{csrf_token}}'},
-               data:{'name':nameArray, 'year':yearArray, 'award':awardArray},
-
-               success: function(data){
-                   x = data.status
-                   if(x == 1){
-                   alert('Multiple Education Data Saved')
-                   }else{
-                   alert('Multiple Education Data Not Saved')
-                   }
-               }
-
-           })
-
-
-       }else{
-            obj = {}
-
-             obj.name = formData.name
-             obj.year = formData.year
-             obj.award = formData.award
-
-             nameArray.push(formData.name)
-             yearArray.push(formData.year)
-             awardArray.push(formData.year)
-             
-             $.ajax({
-               type:'POST',
-               url:'{% url "edu-save" %}',
-               headers: {'X-CSRFToken': '{{csrf_token}}'},
-               data:{'name':nameArray, 'year':yearArray, 'award':awardArray},
-
-               success: function(data){
-                   x = data.status
-                   if(x == 1){
-                   alert('Single Education Data Saved')
-                   }else{
-                   alert('Single Education Data Not Saved')
-                   }
-               }
-
-           })
-
-       }
-       
-
-    });
-
-
-
-    });
-</script>
 
 
 

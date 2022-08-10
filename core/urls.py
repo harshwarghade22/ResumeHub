@@ -10,6 +10,8 @@ urlpatterns = [
     path('skill-save/', views.saveSkill, name="skill-save"),
     path('edu-save/', views.saveEducation, name="edu-save"),
     path('ref-save/', views.saveReferee, name="ref-save"),
+    path('profile-save/', views.uploadProfile, name="profile-save"),
+
 
 
 

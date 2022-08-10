@@ -64,7 +64,7 @@ class Profile(models.Model):
     mname = models.CharField(max_length=500)
     gender = models.CharField(max_length=500)
     country = models.CharField(max_length=500)
-    street = models.CharField(max_length=500)
+    region = models.CharField(max_length=500)
     email = models.CharField(max_length=500)
     phone = models.CharField(max_length=500)
     occupation = models.CharField(max_length=500)

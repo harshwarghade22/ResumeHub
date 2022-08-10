@@ -3,7 +3,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,logout
-from .models import Skill,Academic,Referee
+from .models import Skill,Academic,Referee,Profile
+from django.core.files.storage import FileSystemStorage
+
 
 def index(request):
     return render(request, 'core/index.html')
@@ -87,3 +89,31 @@ def saveReferee(request):
                 a.save()
             return JsonResponse({'status':1})
     return JsonResponse({'status':0})
+
+
+
+
+
+def uploadProfile(request):
+    fname = request.POST.get('fname')
+    mname = request.POST.get('mname')
+    lname = request.POST.get('lname')
+    email = request.POST.get('email')
+    phone = request.POST.get('phone')
+    gender = request.POST.get('gender')
+    bio = request.POST.get('bio')
+    dob = request.POST.get('dob')
+    occupation = request.POST.get('occupation')
+    country = request.POST.get('country')
+    region = request.POST.get('region')
+    file = request.FILES.get('file')
+
+    fss = FileSystemStorage()
+    filename = fss.save(file.name, file)
+    url = fss.url(filename)
+    print(file.name)
+
+    p = Profile(fname=fname, mname=mname, lname=lname, email=email, bio=bio, dob=dob, gender=gender, occupation=occupation, country=country, region=region, avator=file,phone=phone,cv_id=1)
+    p.save()
+
+    return JsonResponse({'status':1})
