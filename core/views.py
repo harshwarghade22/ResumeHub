@@ -3,8 +3,10 @@ from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,logout
-from .models import Skill,Academic,Referee,Profile
+from .models import Skill,Academic,Referee,Profile,User
 from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.hashers import make_password
+
 
 
 def index(request):
@@ -25,6 +27,7 @@ def loginView(request):
     return render(request, 'core/login.html')
 
 
+@login_required
 def dashboard(request):
     return render(request, 'core/dashboard.html')
 
@@ -117,3 +120,47 @@ def uploadProfile(request):
     p.save()
 
     return JsonResponse({'status':1})
+
+
+
+
+def registerView(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        password = make_password(password)
+
+        check_user = User.objects.filter(username=username).count()
+        check_email = User.objects.filter(email=email).count()
+
+        if(check_user > 0):
+            messages.error(request, 'Username is already taken')
+            return redirect('reg-form')
+        elif(check_email > 0):
+            messages.error(request, 'Email is already taken')
+            return redirect('reg-form')
+        else:
+            User.objects.create(username=username, email=email, password=password)
+            messages.success(request, 'Account created successfully, Please Sign In')
+            return redirect('reg-form')
+    else:
+        return render(request, 'core/register.html')        
+
+
+
+def logoutView(request):
+    logout(request)
+    return redirect('index')
+
+
+
+def viewPDF(request, id=None):
+    user_profile = Profile.objects.filter(cv_id=id).values()
+
+    context = {'user_profile':user_profile}
+    return render(request, 'core/pdf_template.html', context)
+
+
+
+        

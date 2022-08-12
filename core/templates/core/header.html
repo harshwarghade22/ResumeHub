@@ -14,9 +14,9 @@
 
     <p class="d-none d-md-inline-block  ml-auto mr-0 mr-md-3 my-2 my-md-0"></p>
     <ul class="navbar-nav ml-auto ml-md-0">
-        <a href="" id="btn_link_space"><button class="btn_link">Home</button></a>
+        <a href="{% url 'index' %}" id="btn_link_space"><button class="btn_link">Home</button></a>
         <a href="{% url 'login' %}" id="btn_link_space"><button class="btn_link">Sign In</button></a>
-        <a href="" id="btn_link_space"><button class="btn_link">Sign Up</button></a>
+        <a href="{% url 'reg-form' %}" id="btn_link_space"><button class="btn_link">Sign Up</button></a>
     </ul>
 </nav>
 

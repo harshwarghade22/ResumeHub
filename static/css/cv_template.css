@@ -1,0 +1,26 @@
+@font-face{
+    font-family: 'SourceSansPro';
+    src: ('SourceSansPro-Regular.ttf');
+}
+
+.cv_header{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    display: flex;
+}
+
+.basic-info p{
+    color: #0087c3;
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.basic-info h1{
+    margin: 0;
+    padding-top: 5%;
+
+}
+
+
