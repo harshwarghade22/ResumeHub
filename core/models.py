@@ -77,7 +77,7 @@ class Profile(models.Model):
         return self.fname
 
     def delete(self, *args, **kwargs):
-        self.avator.delet()
+        self.avator.delete()
         super().delete(*args, **kwargs)
 
 

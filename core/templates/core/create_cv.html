@@ -9,11 +9,18 @@
          <div class="col-md-2" >
             
          </div>
-         <div class="card col-md-8">
-             <h3 class="text-primary">Click On Add, To Add Form Then Fill In Your Details And Submit</h3>
+         <div class="col-md-8">
+             
+             <h3 class="card text-primary">Click On Add, To Add Form Then Fill In Your Details And Submit</h3>
              <br/>
 
-             <h1>Provide Basic Provide Information</h1>
+
+
+
+
+             {% if status == 'no_profile' %}
+             <p class="text-danger">After Creating A Profile, You Can Start Filling Other details. Like education background and Referees</p>
+             <h1 class="card">Provide Basic Provide Information</h1>
              <form class="uform" method="POST" enctype="multipart/form-data">
 
 
@@ -106,24 +113,46 @@
 
             <button id="profile_save" class="btn btn-primary">Save</button>
 
-
              </form>
+             
+             {% else %}
+
+
 
              <br/>
-             <h1>Add Professional Skills Form</h1>
+             <h1 class="card">Add Professional Skills Form</h1>
 
              <form class="form_skill" method="POST">
                  {% csrf_token %} 
-             <div id="wrapper_skill"></div>
+             <div id="wrapper_skill">
+
+                <div class="form-group">
+                    <div class="row" >
+                    <div class="col" >
+                        <label>Name of your skill</label>
+                        <input  type="Enter Your Skill" id="s_name" name="s_name" class="form-control" />
+                    </div>
+                    <div class="col" >
+                   <label>Level of your skill</label>
+                   <select   name="s_level" id="s_level" class="form-control">
+                       <option value="">Choose Your Level</option>
+                       <option value="Beginner">Beginner</option>
+                       <option value="Intermediate">Intermediate</option>
+                       <option value="Advanced">Advanced</option>
+                   </select>
+                   </div>
+
+                   <div class="skill_del_btn col" style="padding-top: 30px;">
+                   <button id="skill_add" class="btn btn-success" >Add More</button>
+                   </div>
+                    </div>
+                </div>
+             </div>
               
              <br/>
              <div class="row">
                 <div class="col-md-1">
                    <button id="skill_save" class="btn btn-primary">Save</button>
-                </div>
-
-                <div class="col-md-1">
-                   <button id="skill_add" class="btn btn-success">Add Form</button>
                 </div>
 
             </div>
@@ -132,7 +161,7 @@
             <br/>
 
 
-            <h1>Add Education Background Form</h1>
+            <h1 class="card">Add Education Background Form</h1>
             <form class="form_edu" method="POST">
                 {% csrf_token %} 
             <div id="wrapper_edu"></div>
@@ -154,7 +183,7 @@
 
 
             <br/>
-            <h1>Add Referees Information Form</h1>
+            <h1 class="card">Add Referees Information Form</h1>
               
             <form class="form_ref" method="POST">
                 {% csrf_token %} 
@@ -172,6 +201,12 @@
 
             </div>
             </form>
+
+             
+
+             {% endif %}
+
+           
             </div>
 
 
