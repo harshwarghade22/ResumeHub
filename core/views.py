@@ -210,7 +210,12 @@ def updateProfile(request):
     region = request.POST.get('region')
     file = request.FILES.get('file')
 
-    Profile.objects.filter(cv_id=id).update(fname=fname, mname=mname, lname=lname, email=email, bio=bio, dob=dob, gender=gender, occupation=occupation, country=country, region=region, avator=file,phone=phone,cv_id=1)
+    user_id = request.user.id
+    cv_id = Cv.objects.filter(user_id=user_id).values_list('id', flat=True)
+    cv_id = list(cv_id)
+    cv_id = cv_id[0]
+
+    Profile.objects.filter(cv_id=id).update(fname=fname, mname=mname, lname=lname, email=email, bio=bio, dob=dob, gender=gender, occupation=occupation, country=country, region=region, avator=file,phone=phone,cv_id=cv_id)
 
     return JsonResponse({'status':1})
 
