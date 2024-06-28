@@ -24,12 +24,4 @@ urlpatterns = [
     path('cv-edit/eduview/update_academic/', views.updateAcademic, name="update_academic"),
     path('cv-edit/eduview/delete_academic/', views.deleteAcademic, name="delete_academic"),
 
-
-
-
-
-
-
-
-
 ]

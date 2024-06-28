@@ -57,7 +57,6 @@ def createCv(request):
         cv_id = Cv.objects.filter(user_id=user_id).values_list('id', flat=True)
         cv_id = list(cv_id)
         cv_id = cv_id[0]
-
         profile_id = Profile.objects.filter(cv_id=cv_id).values_list('id', flat=True)
         profile_id = list(profile_id)
         profile_id = profile_id[0]
@@ -227,7 +226,6 @@ def registerView(request):
         email = request.POST['email']
         password = request.POST['password']
         password = make_password(password)
-
         check_user = User.objects.filter(username=username).count()
         check_email = User.objects.filter(email=email).count()
 
