@@ -341,9 +341,19 @@ def educationView(request):
 
 
 def generate_PDF(request, id):
-    print('Download Cv Id is',id)
-    pdf = pdfkit.from_url(request.build_absolute_uri(reverse('cv-detail', args=[id])), False)
-    response = HttpResponse(pdf, content_type='application/pdf') 
+    print('Download CV Id is', id)
+    
+    # Specify the path to wkhtmltopdf if necessary
+    # Replace '/path/to/wkhtmltopdf' with the actual path to wkhtmltopdf on your system
+    path_to_wkhtmltopdf = 'C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'  # Example for Ubuntu/Debian
+    config = pdfkit.configuration(wkhtmltopdf=path_to_wkhtmltopdf)
+    
+    # Generate the PDF
+    pdf_url = request.build_absolute_uri(reverse('cv-detail', args=[id]))
+    pdf = pdfkit.from_url(pdf_url, False, configuration=config)
+    
+    # Create the HTTP response with the generated PDF
+    response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="cv.pdf"'
     return response
 
